@@ -262,7 +262,7 @@
       return;
     }
 
-    document.title = materia.nome + ' | Psico Sem Complicação';
+    document.title = materia.nome + ' | Psicologia sem Complicação';
     document.body.setAttribute('data-fase', materia.fase);
 
     var total = materia.topicos.length;
@@ -287,10 +287,13 @@
 
     alvo.innerHTML =
       '<header class="materia-cabeca">' +
-        '<p class="selo-fase">' + esc(nomeFase(materia.fase)) + '</p>' +
-        '<h1>' + esc(materia.nome) + '</h1>' +
-        '<p class="materia-intro">' + esc(materia.descricao) + '</p>' +
-        '<p class="materia-contagem">' + contagem + '</p>' +
+        '<div class="materia-cabeca-texto">' +
+          '<p class="selo-fase">' + esc(nomeFase(materia.fase)) + '</p>' +
+          '<h1><span class="marca-texto-fundo">' + esc(materia.nome) + '</span></h1>' +
+          '<p class="materia-intro">' + esc(materia.descricao) + '</p>' +
+          '<p class="materia-contagem">' + contagem + '</p>' +
+        '</div>' +
+        '<img class="mascote" src="img/mascote/apontando.png" alt="" width="388" height="736">' +
       '</header>' +
       '<ul class="topicos">' + topicos + '</ul>' +
       (n < total

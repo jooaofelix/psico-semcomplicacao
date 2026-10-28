@@ -1,4 +1,4 @@
-# Psico Sem Complicação
+# Psicologia sem Complicação
 
 Site de resumos de psicologia em PDF para baixar de graça, organizado por matéria.
 Feito em HTML, CSS e JavaScript puros: não precisa instalar nada.
@@ -11,14 +11,15 @@ materia.html    página de cada matéria (materia.html?m=etica)
 js/dados.js     TODO o conteúdo: matérias, temas, PDFs e vídeos
 js/app.js       monta as páginas a partir do dados.js
 css/estilo.css  visual (cores e fontes no topo do arquivo)
-img/            mascote e ícone
+img/mascote/    poses do mascote
 pdfs/           os resumos em PDF
 ```
 
 ## Colocar o mascote
 
-Salve a imagem como `img/mascote.png` (de preferência com fundo transparente).
-Enquanto ela não existir, aparece o símbolo ψ no lugar.
+As poses ficam em `img/mascote/` (PNG com fundo transparente):
+`apresentando.png` (início), `apontando.png` (páginas das matérias), `estudando.png` (vídeos)
+e `acenando.png` (chamada do Instagram). Para trocar, salve a nova imagem com o mesmo nome.
 
 ## Publicar um resumo
 
@@ -39,7 +40,7 @@ ou `link` + `capa` para Reels. Sem link, o vídeo aparece como "Em breve".
 
 ## Mudar as cores
 
-As cores ficam no começo de `css/estilo.css`, em `:root`. Troque os códigos para as cores do Instagram.
+As cores e fontes ficam no começo de `css/estilo.css`, em `:root`.
 
 ## Publicar o site (GitHub Pages, grátis)
 
