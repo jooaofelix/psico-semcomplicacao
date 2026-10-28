@@ -470,6 +470,9 @@ ul { list-style: none; margin: 0; padding: 0; }
   align-items: end;
 }
 
+/* sem isso a lista que rola de lado estica a coluna e a página vaza no celular */
+.videos-grade > * { min-width: 0; }
+
 @media (min-width: 1000px) {
   .videos-grade { grid-template-columns: 1fr 260px; }
 }
