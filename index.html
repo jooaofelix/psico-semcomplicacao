@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Psico Sem Complicação | Resumos de psicologia em PDF</title>
+  <meta name="description" content="Resumos de psicologia em PDF para baixar de graça, organizados por matéria.">
+  <meta property="og:title" content="Psico Sem Complicação">
+  <meta property="og:description" content="Resumos de psicologia em PDF para baixar de graça, organizados por matéria.">
+  <meta name="theme-color" content="#F4F2FC">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Baloo+2:wght@600;700;800&display=swap">
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="topo">
+    <div class="container topo-linha">
+      <a class="marca" href="./" aria-label="Psico Sem Complicação, página inicial">
+        <span class="marca-simbolo" aria-hidden="true">
+          <svg viewBox="0 0 32 32" focusable="false"><path d="M16 6v21M8 9.5c0 8 3 11 8 11s8-3 8-11" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round"/></svg>
+        </span>
+        <span class="marca-nome">Psico Sem Complicação</span>
+      </a>
+      <nav class="menu" aria-label="Principal">
+        <a href="#materias">Matérias</a>
+        <a href="#videos">Vídeos</a>
+        <a href="https://www.instagram.com/psicosemcomplicacao/" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero">
+      <div class="container hero-grade">
+        <div class="hero-arte">
+          <svg class="mancha" viewBox="-200 -190 400 380" aria-hidden="true" focusable="false">
+            <g fill="currentColor">
+              <path transform="translate(-1 0)" d="M0-150C24-162 52-142 50-112C88-136 146-124 138-82C132-54 98-58 106-34C120 0 180-12 172 34C165 70 118 56 114 86C110 112 148 128 120 150C96 168 68 142 52 160C38 174 14 162 0 168Z"/>
+              <path transform="translate(1 0) scale(-1 1)" d="M0-150C24-162 52-142 50-112C88-136 146-124 138-82C132-54 98-58 106-34C120 0 180-12 172 34C165 70 118 56 114 86C110 112 148 128 120 150C96 168 68 142 52 160C38 174 14 162 0 168Z"/>
+              <circle cx="166" cy="-136" r="9"/><circle cx="-166" cy="-136" r="9"/>
+              <circle cx="188" cy="88" r="6"/><circle cx="-188" cy="88" r="6"/>
+              <circle cx="76" cy="176" r="7"/><circle cx="-76" cy="176" r="7"/>
+            </g>
+          </svg>
+          <!-- Mascote: salve a imagem como img/mascote.png (de preferência com fundo transparente). -->
+          <img class="mascote" src="img/mascote.png" alt="Mascote do Psico Sem Complicação"
+               onerror="this.parentNode.classList.add('sem-mascote'); this.remove();">
+          <svg class="mascote-reserva" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path d="M16 6v21M8 9.5c0 8 3 11 8 11s8-3 8-11" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>
+        </div>
+
+        <div class="hero-texto">
+          <h1>Resumos de psicologia em PDF, de graça.</h1>
+          <p class="hero-sub">Escolha a matéria, ache o tema da aula e baixe o resumo. Sem cadastro.</p>
+
+          <form class="busca" id="busca-form" role="search" autocomplete="off">
+            <label class="sr-only" for="busca">Buscar matéria ou tema</label>
+            <svg class="busca-icone" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="m15.5 15.5 5 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+            <input id="busca" type="search" placeholder="Busque matéria ou tema (ex.: Piaget)"
+                   aria-controls="busca-resultados" aria-expanded="false" aria-describedby="busca-aviso">
+            <div class="busca-resultados" id="busca-resultados" hidden></div>
+            <p class="sr-only" id="busca-aviso" aria-live="polite"></p>
+          </form>
+
+          <div class="atalhos" id="atalhos"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao" id="materias" aria-labelledby="materias-titulo">
+      <div class="container">
+        <div class="secao-cabeca">
+          <h2 id="materias-titulo">Matérias</h2>
+          <p>Organizadas na ordem em que costumam aparecer no curso. Abra a matéria para ver os temas e baixar os resumos.</p>
+        </div>
+        <div id="fases"></div>
+      </div>
+    </section>
+
+    <section class="secao secao-videos" id="videos" aria-labelledby="videos-titulo">
+      <div class="container">
+        <div class="secao-cabeca">
+          <h2 id="videos-titulo">Vídeos</h2>
+          <p>Alguns temas explicados em poucos minutos, pra assistir antes de ler o resumo.</p>
+        </div>
+        <ul class="videos" id="videos-lista"></ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="container rodape-grade">
+      <div class="rodape-marca">
+        <p class="rodape-nome">Psico Sem Complicação</p>
+        <p>Resumos gratuitos de psicologia, organizados por matéria.</p>
+      </div>
+      <a class="botao-insta" href="https://www.instagram.com/psicosemcomplicacao/" target="_blank" rel="noopener">Seguir @psicosemcomplicacao</a>
+      <p class="rodape-aviso">Os resumos são material de apoio e não substituem a bibliografia indicada pelos professores. © <span id="ano">2026</span> Psico Sem Complicação.</p>
+    </div>
+  </footer>
+
+  <script src="js/dados.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
