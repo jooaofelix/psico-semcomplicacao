@@ -52,7 +52,7 @@ const MATERIAS = [
     nome: 'Processos Psicológicos Básicos',
     descricao: 'Como a gente percebe, presta atenção, lembra, pensa e sente.',
     topicos: [
-      { titulo: 'Sensação e percepção', pdf: '' },
+      { titulo: 'Sensação e percepção', pdf: 'pdfs/processos-basicos/sensacao-e-percepcao.pdf' },
       { titulo: 'Atenção', pdf: '' },
       { titulo: 'Memória', pdf: '' },
       { titulo: 'Linguagem e pensamento', pdf: '' },
