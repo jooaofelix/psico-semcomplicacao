@@ -55,7 +55,7 @@ const MATERIAS = [
       { titulo: 'Sensação e percepção', pdf: 'pdfs/processos-basicos/sensacao-e-percepcao.pdf' },
       { titulo: 'Atenção', pdf: 'pdfs/processos-basicos/atencao.pdf' },
       { titulo: 'Memória', pdf: 'pdfs/processos-basicos/memoria.pdf' },
-      { titulo: 'Linguagem e pensamento', pdf: '' },
+      { titulo: 'Linguagem e pensamento', pdf: 'pdfs/processos-basicos/linguagem-e-pensamento.pdf' },
       { titulo: 'Emoção e motivação', pdf: '' },
     ],
   },
