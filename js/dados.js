@@ -53,7 +53,7 @@ const MATERIAS = [
     descricao: 'Como a gente percebe, presta atenção, lembra, pensa e sente.',
     topicos: [
       { titulo: 'Sensação e percepção', pdf: 'pdfs/processos-basicos/sensacao-e-percepcao.pdf' },
-      { titulo: 'Atenção', pdf: '' },
+      { titulo: 'Atenção', pdf: 'pdfs/processos-basicos/atencao.pdf' },
       { titulo: 'Memória', pdf: '' },
       { titulo: 'Linguagem e pensamento', pdf: '' },
       { titulo: 'Emoção e motivação', pdf: '' },
