@@ -67,8 +67,8 @@ const MATERIAS = [
     topicos: [
       { titulo: 'Neurônio e sinapse', pdf: '' },
       { titulo: 'Neurotransmissores', pdf: '' },
-      { titulo: 'Sistema nervoso central e periférico', pdf: '' },
-      { titulo: 'Lobos cerebrais e suas funções', pdf: '' },
+      { titulo: 'Sistema nervoso central e periférico', pdf: 'pdfs/bases-biologicas/sistema-nervoso-central-e-periferico.pdf' },
+      { titulo: 'Lobos cerebrais e suas funções', pdf: 'pdfs/bases-biologicas/lobos-cerebrais-e-suas-funcoes.pdf' },
       { titulo: 'Sistema límbico e emoções', pdf: '' },
     ],
   },
