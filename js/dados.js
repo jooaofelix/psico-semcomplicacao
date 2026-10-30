@@ -56,7 +56,7 @@ const MATERIAS = [
       { titulo: 'Atenção', pdf: 'pdfs/processos-basicos/atencao.pdf' },
       { titulo: 'Memória', pdf: 'pdfs/processos-basicos/memoria.pdf' },
       { titulo: 'Linguagem e pensamento', pdf: 'pdfs/processos-basicos/linguagem-e-pensamento.pdf' },
-      { titulo: 'Emoção e motivação', pdf: '' },
+      { titulo: 'Emoção e motivação', pdf: 'pdfs/processos-basicos/emocao-e-motivacao.pdf' },
     ],
   },
   {
