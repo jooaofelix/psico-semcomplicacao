@@ -3,7 +3,7 @@
   Páginas: tenta a rede primeiro (para pegar atualizações) e usa a cópia guardada se estiver offline.
   Imagens, fontes e PDFs: usa a cópia guardada e atualiza em segundo plano.
 */
-const VERSAO = 'psicoplay-v2';
+const VERSAO = 'psicoplay-v3';
 const ESSENCIAIS = [
   'psicoplay.html',
   'js/firebase-config.js',
