@@ -1,0 +1,9 @@
+{
+  // Publica o site estático (HTML, CSS, JS, imagens e PDFs) como Worker do Cloudflare.
+  "name": "psico-semcomplicacao",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": ".",
+    "not_found_handling": "404-page"
+  }
+}

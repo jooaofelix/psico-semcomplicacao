@@ -46,7 +46,17 @@ ou `link` + `capa` para Reels. Sem link, o vídeo aparece como "Em breve".
 
 As cores e fontes ficam no começo de `css/estilo.css`, em `:root`.
 
-## Publicar o site (GitHub Pages, grátis)
+## Publicar o site (Cloudflare)
+
+O site no ar fica em `https://psico-semcomplicacao.jvctrfelix.workers.dev`. Depois de mudar qualquer arquivo, publique de novo com:
+
+```bash
+npx wrangler deploy
+```
+
+A configuração está em `wrangler.jsonc`. O `.assetsignore` lista o que não vai para o site (README, configuração e a pasta `.git`).
+
+## Outra opção (GitHub Pages, grátis)
 
 No GitHub: **Settings → Pages → Branch**, escolha a branch e a pasta `/ (root)` e salve.
 O site fica em `https://jooaofelix.github.io/psico-semcomplicacao/`.
