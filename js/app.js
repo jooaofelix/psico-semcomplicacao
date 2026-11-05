@@ -326,6 +326,51 @@
     }
   }
 
+  // ---------- PsicoPlay: banner animado e transição ----------
+
+  function iniciarPsicoPlay() {
+    var calmo = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var banner = document.querySelector('.pp-banner');
+
+    // A trilha do banner se desenha quando ele entra na tela.
+    if (banner && !calmo && 'IntersectionObserver' in window) {
+      banner.classList.add('anima');
+      var obs = new IntersectionObserver(function (itens) {
+        if (itens[0].isIntersecting) { banner.classList.add('visivel'); obs.disconnect(); }
+      }, { threshold: 0.35 });
+      obs.observe(banner);
+    }
+
+    var links = document.querySelectorAll('a[href="psicoplay.html"]');
+    if (!links.length) return;
+
+    // Deixa o jogo pré-carregado para a transição não parar no meio.
+    var pre = document.createElement('link');
+    pre.rel = 'prefetch';
+    pre.href = 'psicoplay.html';
+    document.head.appendChild(pre);
+
+    var cortina = document.createElement('div');
+    cortina.className = 'pp-cortina';
+    cortina.setAttribute('aria-hidden', 'true');
+    cortina.innerHTML = '<i class="pp-c1"></i><i class="pp-c2"></i>' +
+      '<div class="pp-cortina-logo">PsicoPlay<small>Abrindo a trilha…</small></div>';
+    document.body.appendChild(cortina);
+
+    Array.prototype.forEach.call(links, function (link) {
+      link.addEventListener('click', function (ev) {
+        if (calmo || ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey || ev.button !== 0) return;
+        ev.preventDefault();
+        try { sessionStorage.setItem('pp-entrada', '1'); } catch (e) {}
+        cortina.classList.add('ativa');
+        setTimeout(function () { window.location.href = link.href; }, 700);
+      });
+    });
+
+    // Ao voltar do jogo pelo botão do navegador, a página pode vir da memória com a cortina fechada.
+    window.addEventListener('pageshow', function () { cortina.classList.remove('ativa'); });
+  }
+
   // ---------- início ----------
 
   renderAtalhos();
@@ -333,6 +378,7 @@
   renderVideos();
   iniciarBusca();
   renderMateria();
+  iniciarPsicoPlay();
 
   var ano = document.getElementById('ano');
   if (ano) ano.textContent = new Date().getFullYear();

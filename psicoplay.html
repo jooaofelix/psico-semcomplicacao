@@ -1,10 +1,24 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>PsicoPlay | Psicologia sem Complicação</title>
 <meta name="description" content="Treine Processos Psicológicos Básicos com lições rápidas feitas a partir das apostilas do Psicologia sem Complicação.">
 <meta name="theme-color" content="#F4F3EF">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="PsicoPlay">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="icon" href="favicon.ico?v=3" sizes="any">
 <link rel="icon" href="img/icone-mascote-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" sizes="180x180" href="img/icone-mascote-180.png">
+<script>
+  /* Quem chega pelo site vê a cortina de marca-texto se abrindo. */
+  try { if (sessionStorage.getItem('pp-entrada')) { sessionStorage.removeItem('pp-entrada'); if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('entrando'); } } catch (e) {}
+</script>
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Permanent+Marker&display=swap">
@@ -195,8 +209,47 @@ a{color:inherit}
 .toast[hidden]{display:none}
 
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
-</style>
 
+/* cortina de entrada (vem do site) */
+.cortina{display:none}
+.entrando .cortina{display:block;position:fixed;inset:0;z-index:50;overflow:hidden;pointer-events:none}
+.cortina i{position:absolute;top:-10%;bottom:-10%;left:-20%;width:140%;transform:skewX(-14deg)}
+.cortina .c1{background:var(--marca)}
+.cortina .c2{background:var(--tinta)}
+.cortina b{position:absolute;inset:0;display:grid;place-content:center;font-family:var(--f-titulo);font-weight:400;font-size:clamp(42px,12vw,72px);color:var(--marca)}
+.entrando .cortina .c2{animation:sai .6s cubic-bezier(.7,0,.3,1) .15s both}
+.entrando .cortina .c1{animation:sai .6s cubic-bezier(.7,0,.3,1) .3s both}
+.entrando .cortina b{animation:some .25s ease-in .05s both}
+.entrando #app{animation:chega .7s cubic-bezier(.3,1.3,.5,1) .35s both}
+@keyframes sai{to{transform:translateX(120%) skewX(-14deg)}}
+@keyframes some{to{opacity:0;transform:scale(1.1)}}
+@keyframes chega{from{transform:scale(.96);opacity:.4}to{transform:none;opacity:1}}
+
+/* instalar como aplicativo */
+.install{margin-block:10px 0;border:2.5px solid var(--tinta);border-radius:var(--rabisco);background:var(--marca);padding:12px 14px;display:flex;gap:12px;align-items:center;box-shadow:3px 4px 0 var(--tinta)}
+.install[hidden]{display:none}
+.install img{width:46px;height:46px;border:2px solid var(--tinta);border-radius:12px;flex:none}
+.install .t{flex:1;min-width:0;font-size:14.5px;line-height:1.3}
+.install .t b{display:block;font-size:16px}
+.install .acts{display:flex;flex-direction:column;gap:6px;flex:none}
+.install .sim{border:2px solid var(--tinta);background:var(--tinta);color:var(--marca);border-radius:var(--rabisco-pilula);padding:7px 14px;font-weight:700;font-size:14px}
+.install .nao{border:0;background:none;font-size:13px;font-weight:700;color:var(--tinta);text-decoration:underline;padding:2px}
+.ios-help{margin:6px 0 0;font-size:14px}
+.ios-help[hidden]{display:none}
+
+/* histórico */
+.hist{list-style:none;margin:0 0 8px;padding:0;display:flex;flex-direction:column;gap:8px}
+.hist li{display:grid;grid-template-columns:auto 1fr auto;gap:2px 10px;align-items:center;border:2px solid var(--tinta);border-radius:var(--rabisco);background:var(--papel-claro);padding:8px 12px}
+.hist .dt{font-size:12.5px;font-weight:700;color:var(--grafite);font-variant-numeric:tabular-nums}
+.hist .nm{font-weight:700;font-size:15px;line-height:1.2;min-width:0}
+.hist .pt{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.hist .ac{grid-column:2 / -1;font-size:13px;color:var(--grafite)}
+.hist-vazio{color:var(--grafite);font-size:15px;margin:0 0 8px}
+</style>
+</head>
+<body>
+
+<div class="cortina" aria-hidden="true"><i class="c1"></i><i class="c2"></i><b>PsicoPlay</b></div>
 <div id="app">
   <!-- TRILHA -->
   <section class="screen" id="home">
@@ -212,6 +265,12 @@ a{color:inherit}
         <div class="hello">
           <img src="img/mascote/acenando.png" alt="Mascote do Psicologia sem Complicação acenando">
           <div class="txt"><h1 id="helloTitle">Bora estudar pra prova?</h1><p id="helloSub">Uma lição por dia já mantém a sequência.</p></div>
+        </div>
+        <div class="install" id="install" hidden>
+          <img src="img/app-icone-192.png" alt="">
+          <div class="t"><b>Instale o PsicoPlay</b><span id="installTxt">Fica na tela inicial e abre como aplicativo.</span>
+            <p class="ios-help" id="iosHelp" hidden>No Safari, toque em <b style="display:inline">Compartilhar</b> e depois em <b style="display:inline">Adicionar à Tela de Início</b>.</p></div>
+          <div class="acts"><button class="sim" id="installYes">Instalar</button><button class="nao" id="installNo">Agora não</button></div>
         </div>
         <div class="goal" aria-label="Meta diária">
           <div class="row"><span>Meta do dia</span><b id="goalTxt">0 / 20 XP</b></div>
@@ -250,12 +309,15 @@ a{color:inherit}
       </div>
       <div class="section-title">Acerto por unidade</div>
       <div id="pfUnits"></div>
+      <div class="section-title">Histórico</div>
+      <ul class="hist" id="pfHist"></ul>
+      <p class="hist-vazio" id="pfHistVazio">Suas lições aparecem aqui quando você terminar a primeira.</p>
       <div class="section-title">Ajustes</div>
       <div class="settings">
         <button class="line-btn" id="soundBtn" aria-pressed="true"><span>Sons</span><small id="soundTxt">Ligados</small></button>
-        <button class="line-btn danger" id="resetBtn"><span>Apagar meu progresso</span><small>Neste aparelho</small></button>
+        <button class="line-btn danger" id="resetBtn"><span>Apagar meu progresso</span><small>XP, histórico e lições</small></button>
         <div class="confirm" id="resetConfirm" hidden>
-          <span>Apagar XP, sequência e lições concluídas? Não dá para desfazer.</span>
+          <span>Apagar XP, sequência, histórico e lições concluídas? Não dá para desfazer.</span>
           <div class="row"><button class="btn" id="resetNo">Cancelar</button><button class="btn bad" id="resetYes">Apagar</button></div>
         </div>
       </div>
@@ -432,7 +494,7 @@ const QBYID = Object.fromEntries(ALL_LESSONS.flatMap(l => l.qs.map(q => [q.id, q
 
 /* ---------------- progresso (fica só neste aparelho) ---------------- */
 const KEY = 'psicoplay-v1';
-const blank = () => ({ xp: 0, done: {}, streak: 0, last: null, daily: {}, mistakes: [], stats: {}, sound: true });
+const blank = () => ({ xp: 0, done: {}, streak: 0, last: null, daily: {}, mistakes: [], stats: {}, sound: true, hist: [], noInstall: false });
 let S = blank();
 try { const raw = localStorage.getItem(KEY); if (raw) S = Object.assign(blank(), JSON.parse(raw)); } catch (e) {}
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} };
@@ -536,13 +598,20 @@ function renderProfile() {
     const s = S.stats[u.id]; const pc = s && s.t ? Math.round(s.r / s.t * 100) : null;
     return `<div class="unit-stat"><span class="nm">${u.name}</span><span class="pc">${pc === null ? 'ainda não estudada' : pc + '%'}</span><div class="bar"><i style="width:${pc || 0}%"></i></div></div>`;
   }).join('');
+  const hs = S.hist.slice(0, 30);
+  $('#pfHistVazio').hidden = hs.length > 0;
+  $('#pfHist').innerHTML = hs.map(h => {
+    const d = new Date(h.d);
+    const dt = String(d.getDate()).padStart(2, '0') + '/' + String(d.getMonth() + 1).padStart(2, '0');
+    return `<li><span class="dt">${dt}</span><span class="nm">${h.n}</span><span class="pt">+${h.xp} XP</span><span class="ac">${h.u ? h.u + ' · ' : ''}${h.acc}% de acerto</span></li>`;
+  }).join('');
   $('#soundTxt').textContent = S.sound ? 'Ligados' : 'Desligados';
   $('#soundBtn').setAttribute('aria-pressed', S.sound);
 }
 $('#soundBtn').addEventListener('click', () => { S.sound = !S.sound; save(); renderProfile(); sfx.tap(); });
 $('#resetBtn').addEventListener('click', () => { $('#resetConfirm').hidden = false; });
 $('#resetNo').addEventListener('click', () => { $('#resetConfirm').hidden = true; });
-$('#resetYes').addEventListener('click', () => { const snd = S.sound; S = blank(); S.sound = snd; save(); $('#resetConfirm').hidden = true; renderProfile(); toast('Progresso apagado'); });
+$('#resetYes').addEventListener('click', () => { const snd = S.sound, ni = S.noInstall; S = blank(); S.sound = snd; S.noInstall = ni; save(); $('#resetConfirm').hidden = true; renderProfile(); toast('Progresso apagado'); });
 
 /* ---------------- lição ---------------- */
 const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
@@ -675,8 +744,10 @@ function finishLesson() {
   const prevStreak = liveStreak();
   addXp(xp + bonus);
   if (!lsn.kind) S.done[lsn.id] = true;
-  save(); sfx.win();
   const acc = Math.round(L.firstTry / L.total * 100);
+  S.hist.unshift({ d: new Date().toISOString(), n: lsn.name, u: lsn.unit ? lsn.unit.name : '', xp: xp + bonus, acc });
+  S.hist = S.hist.slice(0, 200);
+  save(); sfx.win(); guardarDeVez();
   $('#endTitle').innerHTML = `<span>${lsn.kind === 'exam' ? 'Simulado feito!' : lsn.kind === 'mistakes' ? 'Erros revisados!' : perfect ? 'Lição perfeita!' : 'Lição concluída!'}</span>`;
   const lvUp = level(S.xp) > beforeLv;
   $('#endSub').textContent = lvUp ? `Você subiu para o ${levelName(level(S.xp))}!` :
@@ -708,6 +779,27 @@ $('#endBtn').addEventListener('click', () => {
   if (L && L.retryLesson) { const l = L.retryLesson; L = null; startLesson(l); return; }
   renderHome(); show('home');
 });
+
+/* ---------------- aplicativo: instalar e guardar o progresso ---------------- */
+function guardarDeVez() { try { if (navigator.storage && navigator.storage.persist) navigator.storage.persist(); } catch (e) {} }
+const instalado = matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+const ehIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+let pedidoInstalar = null;
+function mostrarConvite() { if (!instalado && !S.noInstall) $('#install').hidden = false; }
+window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); pedidoInstalar = e; mostrarConvite(); });
+if (ehIOS && !instalado) mostrarConvite();
+$('#installYes').addEventListener('click', async () => {
+  if (pedidoInstalar) {
+    pedidoInstalar.prompt();
+    const r = await pedidoInstalar.userChoice.catch(() => null);
+    pedidoInstalar = null;
+    if (r && r.outcome === 'accepted') { $('#install').hidden = true; guardarDeVez(); }
+  } else { $('#iosHelp').hidden = false; $('#installTxt').hidden = true; $('#installYes').hidden = true; }
+});
+$('#installNo').addEventListener('click', () => { S.noInstall = true; save(); $('#install').hidden = true; });
+window.addEventListener('appinstalled', () => { $('#install').hidden = true; toast('PsicoPlay instalado!'); });
+if ('serviceWorker' in navigator && location.protocol !== 'file:') navigator.serviceWorker.register('sw.js').catch(() => {});
+if (instalado) guardarDeVez();
 
 const IMG_APRESENTANDO = 'img/mascote/apresentando.png', IMG_ESTUDANDO = 'img/mascote/estudando.png';
 renderHome(); show('home');

@@ -37,6 +37,10 @@ Cada tema tem um link direto pra usar no Instagram, por exemplo:
 
 O jogo de lições fica em `psicoplay.html` (arquivo único, sem dependências). As questões estão na lista `UNITS`, dentro do próprio arquivo; cada unidade aponta para o PDF da apostila. O progresso de cada pessoa fica salvo só no navegador dela. Para mostrar a chamada do jogo em outra matéria, coloque `jogo: 'psicoplay.html'` nela em `js/dados.js`.
 
+O jogo também pode ser instalado como aplicativo. O `manifest.webmanifest` dá o nome e os ícones (`img/app-icone-*.png`), e o `sw.js` guarda uma cópia para abrir sem internet. Ao mudar o `sw.js`, troque o número em `VERSAO` para os aparelhos baixarem a versão nova.
+
+Qualquer link para `psicoplay.html` no site abre o jogo com a transição de marca-texto (em `js/app.js`, função `iniciarPsicoPlay`).
+
 ## Vídeos
 
 Em `js/dados.js`, na lista `VIDEOS`, preencha `youtube` com o código do vídeo (a capa aparece sozinha)
