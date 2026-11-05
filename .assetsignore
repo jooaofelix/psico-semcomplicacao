@@ -4,3 +4,6 @@ node_modules
 wrangler.jsonc
 .assetsignore
 README.md
+firestore.rules
+firebase.json
+.gitignore

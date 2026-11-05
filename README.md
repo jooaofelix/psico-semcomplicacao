@@ -41,6 +41,18 @@ O jogo também pode ser instalado como aplicativo. O `manifest.webmanifest` dá 
 
 Qualquer link para `psicoplay.html` no site abre o jogo com a transição de marca-texto (em `js/app.js`, função `iniciarPsicoPlay`).
 
+## Login do PsicoPlay (Firebase)
+
+Com o Firebase configurado, o PsicoPlay pede login (Google ou e-mail e senha) e salva XP, sequência, lições, erros e histórico na conta da pessoa, em qualquer aparelho. Sem configuração, ele funciona sem login e salva só no aparelho.
+
+1. Em console.firebase.google.com, crie um projeto (o Google Analytics pode ficar desligado).
+2. **Authentication → Começar → Método de login**: ative **Google** e **E-mail/senha**.
+3. **Authentication → Configurações → Domínios autorizados**: adicione o endereço do site (por exemplo `psico-semcomplicacao.desatasistemas.workers.dev`).
+4. **Firestore Database → Criar banco de dados** (modo de produção, região `southamerica-east1`). Na aba **Regras**, cole o conteúdo de `firestore.rules` e publique.
+5. **Configurações do projeto → Seus apps → Web (</>)**: registre um app e copie o `firebaseConfig` para `js/firebase-config.js`, no lugar do `null`.
+
+Os dados ficam em `jogadores/{uid}`. Cada pessoa só lê e grava o próprio documento.
+
 ## Vídeos
 
 Em `js/dados.js`, na lista `VIDEOS`, preencha `youtube` com o código do vídeo (a capa aparece sozinha)

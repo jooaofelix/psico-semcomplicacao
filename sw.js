@@ -3,9 +3,11 @@
   Páginas: tenta a rede primeiro (para pegar atualizações) e usa a cópia guardada se estiver offline.
   Imagens, fontes e PDFs: usa a cópia guardada e atualiza em segundo plano.
 */
-const VERSAO = 'psicoplay-v1';
+const VERSAO = 'psicoplay-v2';
 const ESSENCIAIS = [
   'psicoplay.html',
+  'js/firebase-config.js',
+  'js/psicoplay-nuvem.js',
   'manifest.webmanifest',
   'img/mascote/acenando.png',
   'img/mascote/estudando.png',
@@ -38,7 +40,8 @@ self.addEventListener('fetch', ev => {
   const req = ev.request;
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
-  const fonte = url.hostname === 'fonts.googleapis.com' || url.hostname === 'fonts.gstatic.com';
+  // Fontes do Google e os arquivos do Firebase (www.gstatic.com) também ficam guardados para abrir sem internet.
+  const fonte = ['fonts.googleapis.com', 'fonts.gstatic.com', 'www.gstatic.com'].includes(url.hostname);
   if (url.origin !== self.location.origin && !fonte) return;
 
   if (req.mode === 'navigate') {

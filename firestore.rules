@@ -1,0 +1,18 @@
+rules_version = '2';
+
+// Cada jogador só lê e grava o próprio progresso do PsicoPlay.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /jogadores/{uid} {
+      allow read, delete: if request.auth != null && request.auth.uid == uid;
+      allow create, update: if request.auth != null && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['estado', 'nome', 'email', 'atualizadoEm'])
+        && request.resource.data.estado is map
+        && request.resource.data.estado.xp is int
+        && request.resource.data.estado.xp >= 0
+        && request.resource.data.estado.xp <= 100000
+        && request.resource.data.nome is string
+        && request.resource.data.nome.size() <= 60;
+    }
+  }
+}
