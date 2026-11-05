@@ -33,6 +33,10 @@ e `acenando.png` (chamada do Instagram). Para trocar, salve a nova imagem com o 
 Cada tema tem um link direto pra usar no Instagram, por exemplo:
 `materia.html?m=desenvolvimento`
 
+## PsicoPlay
+
+O jogo de lições fica em `psicoplay.html` (arquivo único, sem dependências). As questões estão na lista `UNITS`, dentro do próprio arquivo; cada unidade aponta para o PDF da apostila. O progresso de cada pessoa fica salvo só no navegador dela. Para mostrar a chamada do jogo em outra matéria, coloque `jogo: 'psicoplay.html'` nela em `js/dados.js`.
+
 ## Vídeos
 
 Em `js/dados.js`, na lista `VIDEOS`, preencha `youtube` com o código do vídeo (a capa aparece sozinha)

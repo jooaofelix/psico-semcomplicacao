@@ -296,6 +296,13 @@
         '<img class="mascote" src="img/mascote/apontando.png" alt="" width="388" height="736">' +
       '</header>' +
       '<ul class="topicos">' + topicos + '</ul>' +
+      (materia.jogo
+        ? '<aside class="chamada-jogo">' +
+            '<div><h2>Treine no PsicoPlay</h2>' +
+            '<p>Lições rápidas com as questões das apostilas desta matéria.</p></div>' +
+            '<a class="botao-baixar" href="' + esc(materia.jogo) + '">Jogar agora</a>' +
+          '</aside>'
+        : '') +
       (n < total
         ? '<aside class="aviso-insta">' +
             '<p>Os resumos novos são avisados primeiro no Instagram.</p>' +

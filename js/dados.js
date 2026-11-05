@@ -48,6 +48,7 @@ const MATERIAS = [
   },
   {
     id: 'processos-basicos',
+    jogo: 'psicoplay.html',
     fase: 'comeco',
     nome: 'Processos Psicológicos Básicos',
     descricao: 'Como a gente percebe, presta atenção, lembra, pensa e sente.',

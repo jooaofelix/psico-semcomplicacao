@@ -1,0 +1,718 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>PsicoPlay | Psicologia sem Complicação</title>
+<meta name="description" content="Treine Processos Psicológicos Básicos com lições rápidas feitas a partir das apostilas do Psicologia sem Complicação.">
+<meta name="theme-color" content="#F4F3EF">
+<link rel="icon" href="favicon.ico?v=3" sizes="any">
+<link rel="icon" href="img/icone-mascote-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" sizes="180x180" href="img/icone-mascote-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Permanent+Marker&display=swap">
+<style>
+/* Layout: app de celular em coluna única — barra de status, trilha vertical em zigue-zague, navegação inferior; lição em tela cheia com folha de resposta que sobe */
+:root{
+  --papel:#F4F3EF;
+  --papel-claro:#FBFAF7;
+  --tinta:#1C1C1C;
+  --grafite:#5E5D58;
+  --linha:#CFCDC6;
+  --marca:#FFE14D;
+  --marca-forte:#F7D21E;
+  --vermelho:#E0261B;
+  --vermelho-claro:#FCE3E1;
+  --bloqueado:#E6E4DE;
+  --f-titulo:'Permanent Marker','Comic Sans MS','Marker Felt',cursive;
+  --f-texto:'Atkinson Hyperlegible',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --rabisco:14px 22px 16px 24px / 22px 14px 24px 16px;
+  --rabisco-pilula:40px 28px 44px 30px / 30px 44px 28px 40px;
+  color-scheme:light;
+}
+html{height:100%;box-sizing:border-box}
+*,*::before,*::after{box-sizing:border-box}
+body{height:100%;margin:0;background:var(--papel);color:var(--tinta);font-family:var(--f-texto);font-size:17px;line-height:1.4;-webkit-tap-highlight-color:transparent;overflow:hidden}
+button{font:inherit;color:inherit;cursor:pointer}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--tinta);outline-offset:3px}
+
+#app{position:relative;height:100%;max-width:520px;margin:0 auto;background:var(--papel);display:flex;flex-direction:column;overflow:hidden}
+@media (min-width:521px){#app{border-left:2px solid var(--tinta);border-right:2px solid var(--tinta)}}
+.screen{flex:1;min-height:0;display:flex;flex-direction:column}
+.screen[hidden]{display:none!important}
+.scroll{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain}
+.gutter{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* ícones */
+.ico{width:22px;height:22px;flex:none;display:block}
+
+/* barra de status */
+.status{flex:none;display:flex;align-items:center;justify-content:space-between;gap:10px;padding-block:10px;border-bottom:2px solid var(--tinta);background:var(--papel-claro)}
+.brand{font-family:var(--f-titulo);font-size:18px;line-height:1;display:flex;align-items:center;gap:8px}
+.brand .psi{width:30px;height:30px;border:2px solid var(--tinta);border-radius:50% 46% 52% 48%;display:grid;place-items:center;font-family:var(--f-texto);font-weight:700;font-size:16px}
+.stats{display:flex;gap:12px;align-items:center}
+.stat{display:flex;align-items:center;gap:4px;font-weight:700;font-variant-numeric:tabular-nums;font-size:16px}
+.stat.off{color:var(--grafite)}
+
+/* topo da trilha */
+.hello{display:flex;gap:12px;align-items:flex-end;padding-block:16px 6px}
+.hello img{width:84px;height:auto;flex:none}
+.hello .txt{min-width:0;padding-bottom:6px}
+.hello h1{margin:0;font-family:var(--f-titulo);font-weight:400;font-size:24px;line-height:1.05;text-wrap:balance}
+.hello p{margin:4px 0 0;color:var(--grafite);font-size:15px}
+.goal{margin-block:8px 4px;border:2px solid var(--tinta);border-radius:var(--rabisco);background:var(--papel-claro);padding:10px 12px;display:flex;flex-direction:column;gap:6px}
+.goal .row{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:15px}
+.goal b{font-variant-numeric:tabular-nums}
+.bar{height:14px;border:2px solid var(--tinta);border-radius:10px;background:var(--papel);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--marca);border-right:2px solid var(--tinta);transition:width .5s cubic-bezier(.3,1.3,.5,1)}
+.bar i.full{border-right:0}
+.course{margin-block:14px 0;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.course .eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--grafite);font-weight:700}
+.course .name{font-family:var(--f-titulo);font-size:20px;line-height:1.1}
+.review-btn{display:flex;align-items:center;gap:6px;border:2px solid var(--tinta);background:var(--papel-claro);border-radius:var(--rabisco-pilula);padding:8px 12px;font-weight:700;font-size:14px;box-shadow:2px 3px 0 var(--tinta);white-space:nowrap}
+.review-btn[hidden]{display:none}
+
+/* unidades e trilha */
+.unit{margin-block:22px 4px}
+.unit-head{border:2.5px solid var(--tinta);border-radius:var(--rabisco);background:var(--papel-claro);padding:12px 14px;display:flex;justify-content:space-between;align-items:center;gap:10px;box-shadow:3px 4px 0 var(--tinta)}
+.unit-head .eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--grafite)}
+.unit-head h2{margin:2px 0 0;font-family:var(--f-titulo);font-weight:400;font-size:21px;line-height:1.1}
+.unit-head h2 span{background:linear-gradient(transparent 55%,var(--marca) 55%,var(--marca) 92%,transparent 92%);padding:0 .1em}
+.unit-head .pdf{flex:none;display:flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;font-size:12px;font-weight:700;border:2px solid var(--tinta);border-radius:12px;padding:6px 8px;background:var(--papel);min-width:64px;text-align:center}
+.path{display:flex;flex-direction:column;align-items:center;gap:52px;padding-block:44px 6px}
+.node-wrap{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px}
+.node{width:76px;height:72px;border:3px solid var(--tinta);border-radius:50% 46% 52% 48% / 48% 52% 46% 50%;background:var(--bloqueado);box-shadow:0 6px 0 var(--tinta);display:grid;place-items:center;transition:transform .08s,box-shadow .08s;position:relative}
+.node:active:not(:disabled){transform:translateY(5px);box-shadow:0 1px 0 var(--tinta)}
+.node svg{width:34px;height:34px}
+.node.done{background:var(--marca)}
+.node.current{background:var(--marca-forte)}
+.node.locked{cursor:not-allowed}
+.node.locked svg{opacity:.55}
+.node-label{font-size:13px;font-weight:700;color:var(--grafite);text-align:center;max-width:130px;line-height:1.15}
+.node.current + .node-label{color:var(--tinta)}
+.start-tag{position:absolute;top:-38px;left:50%;transform:translateX(-50%);white-space:nowrap;font-family:var(--f-titulo);font-size:15px;background:var(--papel-claro);border:2px solid var(--tinta);border-radius:10px;padding:2px 10px;animation:bob 1.6s ease-in-out infinite;pointer-events:none}
+.start-tag::after{content:"";position:absolute;left:50%;bottom:-8px;margin-left:-6px;border:6px solid transparent;border-top-color:var(--tinta);border-bottom:0}
+@keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,-4px)}}
+.final{margin-block:26px 30px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px}
+.final .node{width:96px;height:88px}
+.credit{font-size:13px;color:var(--grafite);text-align:center;padding-block:4px 24px}
+.credit a{font-weight:700}
+
+/* navegação inferior */
+.nav{flex:none;display:grid;grid-template-columns:1fr 1fr;border-top:2px solid var(--tinta);background:var(--papel-claro);padding-bottom:0}
+.nav button{border:0;background:none;padding:10px 0 12px;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:13px;font-weight:700;color:var(--grafite);min-height:56px}
+.nav button[aria-current="page"]{color:var(--tinta)}
+.nav button[aria-current="page"] .ico{background:var(--marca);border-radius:8px;box-shadow:0 0 0 5px var(--marca)}
+
+/* perfil */
+.profile-top{display:flex;gap:14px;align-items:center;padding-block:18px 10px}
+.profile-top img{width:96px;height:auto;flex:none}
+.profile-top h1{margin:0;font-family:var(--f-titulo);font-weight:400;font-size:26px;line-height:1.05}
+.profile-top p{margin:4px 0 0;color:var(--grafite)}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-block:8px}
+.tile{border:2px solid var(--tinta);border-radius:var(--rabisco);background:var(--papel-claro);padding:10px 12px;display:flex;gap:10px;align-items:center}
+.tile b{display:block;font-size:22px;line-height:1.1;font-variant-numeric:tabular-nums}
+.tile span{font-size:13px;color:var(--grafite)}
+.section-title{font-family:var(--f-titulo);font-size:20px;margin:20px 0 8px}
+.unit-stat{display:grid;grid-template-columns:1fr auto;gap:4px 10px;align-items:center;margin-bottom:12px}
+.unit-stat .nm{font-weight:700;font-size:15px}
+.unit-stat .pc{font-size:14px;color:var(--grafite);font-variant-numeric:tabular-nums}
+.unit-stat .bar{grid-column:1 / -1;height:12px}
+.settings{display:flex;flex-direction:column;gap:10px;margin-block:8px 28px}
+.line-btn{display:flex;justify-content:space-between;align-items:center;gap:10px;border:2px solid var(--tinta);border-radius:var(--rabisco);background:var(--papel-claro);padding:12px 14px;font-weight:700;text-align:left;min-height:52px}
+.line-btn small{font-weight:400;color:var(--grafite)}
+.danger{color:var(--vermelho)}
+.confirm{border:2px solid var(--vermelho);border-radius:var(--rabisco);padding:12px;background:var(--vermelho-claro);display:flex;flex-direction:column;gap:10px}
+.confirm[hidden]{display:none}
+.confirm .row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+
+/* botões grandes */
+.btn{min-height:54px;border:3px solid var(--tinta);border-radius:var(--rabisco-pilula);background:var(--papel-claro);box-shadow:0 5px 0 var(--tinta);font-family:var(--f-titulo);font-size:19px;letter-spacing:.02em;padding:6px 18px;transition:transform .08s,box-shadow .08s}
+.btn:active:not(:disabled){transform:translateY(4px);box-shadow:0 1px 0 var(--tinta)}
+.btn.go{background:var(--marca)}
+.btn.bad{background:var(--vermelho);color:#fff}
+.btn:disabled{background:var(--bloqueado);color:var(--grafite);border-color:var(--grafite);box-shadow:0 5px 0 var(--grafite);cursor:not-allowed}
+.btn.wide{width:100%}
+
+/* lição */
+.lesson-top{flex:none;display:flex;align-items:center;gap:12px;padding-block:14px 8px}
+.x{width:44px;height:44px;border:0;background:none;display:grid;place-items:center;flex:none;margin-left:-8px}
+.lesson-top .bar{flex:1;height:18px}
+.hearts{display:flex;align-items:center;gap:3px;font-weight:700;font-variant-numeric:tabular-nums;flex:none}
+.hearts.hit{animation:shake .4s}
+.q-area{flex:1;min-height:0;overflow-y:auto;padding-block:10px 20px;display:flex;flex-direction:column;gap:16px}
+.q-kind{font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--grafite);display:flex;align-items:center;gap:8px}
+.q-kind .retry{background:var(--vermelho-claro);color:var(--vermelho);border-radius:6px;padding:1px 6px;letter-spacing:.04em}
+.q-text{margin:0;font-size:21px;line-height:1.3;font-weight:700;text-wrap:pretty}
+.q-text .blank{display:inline-block;min-width:4.5em;border-bottom:3px solid var(--tinta);text-align:center;padding:0 .2em;color:var(--grafite)}
+.q-text .blank.filled{background:var(--marca);color:var(--tinta);border-radius:6px 6px 0 0}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{display:flex;gap:12px;align-items:center;text-align:left;border:2.5px solid var(--tinta);border-radius:var(--rabisco);background:var(--papel-claro);padding:12px 14px;min-height:56px;box-shadow:0 4px 0 var(--tinta);font-size:17px;line-height:1.3;transition:transform .08s,box-shadow .08s,background .12s}
+.opt .k{flex:none;width:28px;height:28px;border:2px solid var(--tinta);border-radius:8px;display:grid;place-items:center;font-weight:700;font-size:14px}
+.opt:active:not(:disabled){transform:translateY(3px);box-shadow:0 1px 0 var(--tinta)}
+.opt[aria-pressed="true"]{background:var(--marca)}
+.opt[aria-pressed="true"] .k{background:var(--tinta);color:var(--marca)}
+.opt.right{background:var(--marca)}
+.opt.wrong{background:var(--vermelho-claro);border-color:var(--vermelho)}
+.opt:disabled{cursor:default}
+.tf{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tf .opt{justify-content:center;font-family:var(--f-titulo);font-size:20px}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chips .opt{min-height:48px;padding:8px 14px}
+.match{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.match .col{display:flex;flex-direction:column;gap:10px;min-width:0}
+.tilebtn{border:2.5px solid var(--tinta);border-radius:var(--rabisco);background:var(--papel-claro);padding:10px;min-height:58px;box-shadow:0 4px 0 var(--tinta);font-size:15px;line-height:1.25;text-align:center;transition:transform .08s,box-shadow .08s,opacity .2s;overflow-wrap:anywhere}
+.tilebtn.l{font-weight:700}
+.tilebtn[aria-pressed="true"]{background:var(--marca)}
+.tilebtn.paired{opacity:.35;box-shadow:none;transform:translateY(4px);cursor:default;background:var(--marca)}
+.tilebtn.miss{animation:shake .4s;background:var(--vermelho-claro);border-color:var(--vermelho)}
+@keyframes shake{0%,100%{transform:none}25%{transform:translateX(-6px)}50%{transform:translateX(5px)}75%{transform:translateX(-3px)}}
+.lesson-foot{flex:none;padding-block:12px 16px;border-top:2px solid var(--linha)}
+.sheet{flex:none;padding-block:14px 16px;border-top:3px solid var(--tinta);display:flex;flex-direction:column;gap:10px;animation:up .25s ease-out}
+.sheet[hidden]{display:none}
+.sheet.ok{background:#FFF4B8}
+.sheet.no{background:var(--vermelho-claro)}
+.sheet h3{margin:0;font-family:var(--f-titulo);font-weight:400;font-size:24px;display:flex;align-items:center;gap:8px}
+.sheet.no h3{color:var(--vermelho)}
+.sheet .ans{font-weight:700}
+.sheet .exp{margin:0;font-size:15.5px;line-height:1.35;max-height:30vh;overflow-y:auto}
+.sheet .src{font-size:12.5px;color:var(--grafite)}
+@keyframes up{from{transform:translateY(30px);opacity:0}to{transform:none;opacity:1}}
+
+/* fim de lição */
+.end{flex:1;min-height:0;overflow-y:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding-block:24px;text-align:center}
+.end img{width:min(48vw,200px);height:auto}
+.end h1{margin:0;font-family:var(--f-titulo);font-weight:400;font-size:34px;line-height:1}
+.end h1 span{background:linear-gradient(transparent 55%,var(--marca) 55%,var(--marca) 92%,transparent 92%)}
+.end p{margin:0;color:var(--grafite);max-width:30ch}
+.chips-res{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%}
+.res{border:2.5px solid var(--tinta);border-radius:var(--rabisco);background:var(--papel-claro);padding:8px 6px 10px;display:flex;flex-direction:column;align-items:center;gap:2px}
+.res small{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--grafite)}
+.res b{font-size:24px;font-variant-numeric:tabular-nums;display:flex;align-items:center;gap:4px}
+.end .actions{width:100%;display:flex;flex-direction:column;gap:12px;margin-top:4px}
+.end .linkbtn{display:block;text-align:center;font-weight:700;padding:10px;min-height:44px}
+
+/* aviso flutuante */
+.toast{position:absolute;left:50%;top:70px;transform:translateX(-50%);z-index:20;background:var(--tinta);color:var(--papel-claro);border-radius:12px;padding:8px 14px;font-weight:700;font-size:15px;white-space:nowrap;animation:up .25s ease-out}
+.toast[hidden]{display:none}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+</style>
+
+<div id="app">
+  <!-- TRILHA -->
+  <section class="screen" id="home">
+    <header class="status gutter">
+      <a class="brand" href="./" aria-label="Voltar para o site Psicologia sem Complicação" style="text-decoration:none"><span class="psi">Ψ</span>PsicoPlay</a>
+      <div class="stats">
+        <span class="stat" id="stStreak" title="Dias seguidos estudando"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1 4 5 6 5 11a5 5 0 0 1-10 0c0-2.5 1.2-4 2.5-5.2.2 1.6 1 2.7 2 3.2C11 8 11 5 12 2z" fill="#E0261B" stroke="#1C1C1C" stroke-width="1.8" stroke-linejoin="round"/></svg><span></span></span>
+        <span class="stat" id="stXp" title="Pontos de experiência"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.8 6 6.4.6-4.8 4.3 1.4 6.4L12 16.5l-5.8 3.3 1.4-6.4L2.8 9.1l6.4-.6z" fill="#FFE14D" stroke="#1C1C1C" stroke-width="1.8" stroke-linejoin="round"/></svg><span></span></span>
+      </div>
+    </header>
+    <div class="scroll" id="homeScroll">
+      <div class="gutter">
+        <div class="hello">
+          <img src="img/mascote/acenando.png" alt="Mascote do Psicologia sem Complicação acenando">
+          <div class="txt"><h1 id="helloTitle">Bora estudar pra prova?</h1><p id="helloSub">Uma lição por dia já mantém a sequência.</p></div>
+        </div>
+        <div class="goal" aria-label="Meta diária">
+          <div class="row"><span>Meta do dia</span><b id="goalTxt">0 / 20 XP</b></div>
+          <div class="bar"><i id="goalBar"></i></div>
+        </div>
+        <div class="course">
+          <div><div class="eyebrow">Começo do curso</div><div class="name">Processos Psicológicos Básicos</div></div>
+          <button class="review-btn" id="mistakesBtn" hidden><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 1 2.3 5.6M4 18v-5h5" fill="none" stroke="#1C1C1C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Revisar erros</span></button>
+        </div>
+        <div id="trail"></div>
+        <p class="credit">Questões feitas a partir das apostilas do <a href="./">Psicologia sem Complicação</a>. Baixe o resumo antes de começar a unidade.</p>
+      </div>
+    </div>
+    <nav class="nav" aria-label="Seções">
+      <button aria-current="page" data-go="home"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 20c0-4 4-4 6-8s6-4 6-8" fill="none" stroke="#1C1C1C" stroke-width="2.2" stroke-linecap="round"/><circle cx="6" cy="20" r="2.2" fill="#1C1C1C"/><circle cx="18" cy="4" r="2.2" fill="#1C1C1C"/></svg>Trilha</button>
+      <button data-go="profile"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4" fill="none" stroke="#1C1C1C" stroke-width="2.2"/><path d="M4 21c1-4.5 4.5-6 8-6s7 1.5 8 6" fill="none" stroke="#1C1C1C" stroke-width="2.2" stroke-linecap="round"/></svg>Perfil</button>
+    </nav>
+  </section>
+
+  <!-- PERFIL -->
+  <section class="screen" id="profile" hidden>
+    <header class="status gutter">
+      <div class="brand"><span class="psi">Ψ</span>Seu progresso</div>
+    </header>
+    <div class="scroll"><div class="gutter">
+      <div class="profile-top">
+        <img src="img/mascote/estudando.png" alt="Mascote estudando">
+        <div><h1 id="pfLevel">1º período</h1><p id="pfNext">Faltam 60 XP para o próximo período</p></div>
+      </div>
+      <div class="bar" aria-label="Progresso até o próximo período"><i id="pfBar"></i></div>
+      <div class="tiles">
+        <div class="tile"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.8 6 6.4.6-4.8 4.3 1.4 6.4L12 16.5l-5.8 3.3 1.4-6.4L2.8 9.1l6.4-.6z" fill="#FFE14D" stroke="#1C1C1C" stroke-width="1.8" stroke-linejoin="round"/></svg><div><b id="pfXp">0</b><span>XP no total</span></div></div>
+        <div class="tile"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1 4 5 6 5 11a5 5 0 0 1-10 0c0-2.5 1.2-4 2.5-5.2.2 1.6 1 2.7 2 3.2C11 8 11 5 12 2z" fill="#E0261B" stroke="#1C1C1C" stroke-width="1.8" stroke-linejoin="round"/></svg><div><b id="pfStreak">0</b><span>dias seguidos</span></div></div>
+        <div class="tile"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7" fill="none" stroke="#1C1C1C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg><div><b id="pfLessons">0/10</b><span>lições feitas</span></div></div>
+        <div class="tile"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="#1C1C1C" stroke-width="2.2"/><circle cx="12" cy="12" r="4" fill="#FFE14D" stroke="#1C1C1C" stroke-width="2"/></svg><div><b id="pfAcc">–</b><span>de acerto</span></div></div>
+      </div>
+      <div class="section-title">Acerto por unidade</div>
+      <div id="pfUnits"></div>
+      <div class="section-title">Ajustes</div>
+      <div class="settings">
+        <button class="line-btn" id="soundBtn" aria-pressed="true"><span>Sons</span><small id="soundTxt">Ligados</small></button>
+        <button class="line-btn danger" id="resetBtn"><span>Apagar meu progresso</span><small>Neste aparelho</small></button>
+        <div class="confirm" id="resetConfirm" hidden>
+          <span>Apagar XP, sequência e lições concluídas? Não dá para desfazer.</span>
+          <div class="row"><button class="btn" id="resetNo">Cancelar</button><button class="btn bad" id="resetYes">Apagar</button></div>
+        </div>
+      </div>
+    </div></div>
+    <nav class="nav" aria-label="Seções">
+      <button data-go="home"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 20c0-4 4-4 6-8s6-4 6-8" fill="none" stroke="#1C1C1C" stroke-width="2.2" stroke-linecap="round"/><circle cx="6" cy="20" r="2.2" fill="#1C1C1C"/><circle cx="18" cy="4" r="2.2" fill="#1C1C1C"/></svg>Trilha</button>
+      <button aria-current="page" data-go="profile"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4" fill="none" stroke="#1C1C1C" stroke-width="2.2"/><path d="M4 21c1-4.5 4.5-6 8-6s7 1.5 8 6" fill="none" stroke="#1C1C1C" stroke-width="2.2" stroke-linecap="round"/></svg>Perfil</button>
+    </nav>
+  </section>
+
+  <!-- LIÇÃO -->
+  <section class="screen" id="lesson" hidden>
+    <div class="lesson-top gutter">
+      <button class="x" id="quitBtn" aria-label="Sair da lição"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="#1C1C1C" stroke-width="2.8" stroke-linecap="round"/></svg></button>
+      <div class="bar" aria-label="Progresso da lição"><i id="lsBar"></i></div>
+      <span class="hearts" id="lsHearts" aria-label="Vidas"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7.5-4.6-9-9.3C2 7.4 4.3 4.5 7.4 4.5c2 0 3.6 1.2 4.6 2.8 1-1.6 2.6-2.8 4.6-2.8 3.1 0 5.4 2.9 4.4 6.2-1.5 4.7-9 9.3-9 9.3z" fill="#E0261B" stroke="#1C1C1C" stroke-width="1.8" stroke-linejoin="round"/></svg><span id="lsHeartsN">3</span></span>
+    </div>
+    <div class="q-area gutter" id="qArea"></div>
+    <div class="lesson-foot gutter" id="lsFoot"><button class="btn go wide" id="checkBtn" disabled>VERIFICAR</button></div>
+    <div class="sheet gutter" id="sheet" hidden role="status" aria-live="polite">
+      <h3 id="shTitle"></h3>
+      <div class="ans" id="shAns"></div>
+      <p class="exp" id="shExp"></p>
+      <div class="src" id="shSrc"></div>
+      <button class="btn wide" id="contBtn">CONTINUAR</button>
+    </div>
+  </section>
+
+  <!-- FIM DE LIÇÃO -->
+  <section class="screen" id="end" hidden>
+    <div class="end gutter" id="endBox">
+      <img id="endImg" src="img/mascote/apresentando.png" alt="Mascote comemorando">
+      <h1 id="endTitle"><span>Lição concluída!</span></h1>
+      <p id="endSub"></p>
+      <div class="chips-res" id="endRes">
+        <div class="res"><small>XP</small><b id="endXp">+10</b></div>
+        <div class="res"><small>Acerto</small><b id="endAcc">100%</b></div>
+        <div class="res"><small>Sequência</small><b id="endStreak">1</b></div>
+      </div>
+      <div class="actions">
+        <button class="btn go wide" id="endBtn">CONTINUAR</button>
+        <a class="linkbtn" id="endPdf" href="#" target="_blank" rel="noopener" hidden>Ler o resumo da unidade</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="toast" id="toast" hidden></div>
+</div>
+
+<script>
+(() => {
+const $ = s => document.querySelector(s);
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const SITE = './';
+
+/* ---------------- conteúdo: Processos Psicológicos Básicos ----------------
+   Cada questão vem dos exercícios, gabaritos e glossários das apostilas.
+   tipos: mc (escolha), tf (verdadeiro/falso), gap (completar), match (ligar pares) */
+const UNITS = [
+  { id: 'sp', name: 'Sensação e percepção', pdf: 'pdfs/processos-basicos/sensacao-e-percepcao.pdf', lessons: [
+    { id: 'sp1', name: 'Detectar não é reconhecer', qs: [
+      { t: 'mc', q: 'Ao ouvir um toque, Ana diz “é o entregador!”. Qual etapa NÃO é garantida pelo som?', o: ['Detectar o som', 'Reconhecer como campainha', 'Concluir quem tocou', 'Perceber uma variação sonora'], a: 2,
+        e: 'Detectar, reconhecer e inferir são níveis diferentes. O som não garante a pizza: pode ser o vizinho pedindo uma chave de fenda.' },
+      { t: 'match', q: 'Ligue cada conceito ao que ele descreve.', p: [['Sensação', 'Detectar estímulos'], ['Percepção', 'Organizar e interpretar'], ['Transdução', 'Estímulo vira atividade elétrica'], ['Receptor', 'Responde a certos estímulos']],
+        e: 'O estímulo chega, o sistema responde e a informação é organizada. São distinções didáticas de processos que interagem.' },
+      { t: 'gap', q: 'No processamento ___, conhecimentos, expectativas e objetivos contribuem para o que percebemos.', o: ['top-down', 'bottom-up', 'sensorial'], a: 0,
+        e: 'Bottom-up enfatiza a informação que vem do estímulo; top-down, o que você já sabe e espera. Na prática, os dois operam juntos.' },
+      { t: 'tf', q: '“Se a percepção depende do contexto, qualquer interpretação é igualmente válida.”', a: false,
+        e: 'O contexto influencia a organização, mas o estímulo e as evidências limitam as interpretações. Confundir um casaco com uma pessoa de longe não torna as duas hipóteses iguais depois de olhar de perto.' },
+    ] },
+    { id: 'sp2', name: 'Psicofísica na prática', qs: [
+      { t: 'mc', q: 'Situação hipotética: k = 0,04 e intensidade inicial I = 250. Qual ΔI a aproximação de Weber prevê?', o: ['10 unidades', '25 unidades', '6,25 unidades', '100 unidades'], a: 0,
+        e: 'ΔI = 0,04 × 250 = 10. É uma estimativa: o k depende da modalidade e do procedimento, e a proporção pode falhar em certas faixas.' },
+      { t: 'mc', q: 'Em 20 tentativas com sinal, houve 15 respostas “sim”. Em 20 sem sinal, 8 respostas “sim”. Quantos falsos alarmes?', o: ['8', '5', '12', '15'], a: 0,
+        e: '15 acertos, 5 omissões, 8 falsos alarmes e 12 rejeições corretas. Dizer mais “sim” pode ser critério mais liberal, não mais sensibilidade.' },
+      { t: 'match', q: 'Qual conceito cada situação sugere?', p: [['Não nota a música enquanto conversa', 'Atenção seletiva'], ['Resposta sensorial muda com estímulo mantido', 'Adaptação sensorial'], ['Resposta cai com repetição, sem fadiga', 'Habituação']],
+        e: 'São descrições preparadas para distinguir processos. Numa situação real, o mecanismo precisa ser investigado.' },
+      { t: 'mc', q: 'Numa lista, o preço fica mais perto do produto errado e você se confunde. Qual princípio de agrupamento explica?', o: ['Proximidade', 'Semelhança', 'Fechamento', 'Continuidade'], a: 0,
+        e: 'Proximidade: elementos próximos tendem a ser agrupados. Aproximar o preço do item certo e separar as linhas resolve.' },
+    ] },
+  ] },
+  { id: 'at', name: 'Atenção', pdf: 'pdfs/processos-basicos/atencao.pdf', lessons: [
+    { id: 'at1', name: 'Selecionar, sustentar, dividir', qs: [
+      { t: 'match', q: 'Qual demanda de atenção predomina em cada caso?', p: [['Ouvir o professor no meio da conversa', 'Seletiva'], ['Vigiar uma tela esperando um sinal raro', 'Sustentada'], ['Parar a leitura, responder e voltar', 'Alternada'], ['Ouvir instrução enquanto segue um mapa', 'Dividida']],
+        e: 'A demanda da tarefa é a pista. Outras modalidades podem participar de cada situação.' },
+      { t: 'match', q: 'Quem propôs o quê?', p: [['Broadbent', 'Filtro precoce'], ['Treisman', 'Atenuação'], ['Kahneman', 'Capacidade e esforço']],
+        e: 'As três propostas não são equivalentes: tratam da seleção, do processamento do que não foi priorizado e da distribuição de recursos.' },
+      { t: 'tf', q: '“Atenção dividida significa capacidade sem limite.”', a: false,
+        e: 'Dividir a atenção não elimina limitações. Demandas concorrentes podem aumentar tempo e erros.' },
+      { t: 'tf', q: '“Atenção e movimento dos olhos são sempre a mesma coisa.”', a: false,
+        e: 'A orientação encoberta mostra que prioridade atencional e direção do olhar não são idênticas.' },
+    ] },
+    { id: 'at2', name: 'Stroop, cegueiras e o “rapidinho”', qs: [
+      { t: 'mc', q: 'A palavra AZUL aparece impressa em tinta vermelha. A instrução é nomear a cor da tinta. Qual a resposta correta?', o: ['Vermelho', 'Azul', 'As duas', 'Depende da pessoa'], a: 0,
+        e: 'A regra pede a cor da tinta. Dizer “azul” pode indicar interferência da leitura da palavra. Não é um teste clínico.' },
+      { t: 'mc', q: 'Enquanto conta passes num vídeo, você não nota um evento inesperado. Como se chama isso?', o: ['Cegueira por desatenção', 'Cegueira à mudança', 'Adaptação sensorial', 'Habituação'], a: 0,
+        e: 'Cegueira por desatenção. Já a dificuldade de achar uma alteração entre duas cenas é cegueira à mudança. Nenhuma das duas significa enxergar mal.' },
+      { t: 'mc', q: 'Dados hipotéticos: média de 520 ms repetindo a tarefa e 680 ms trocando de tarefa. Qual o custo de troca?', o: ['160 ms', '1.200 ms', '680 ms', '80 ms'], a: 0,
+        e: '680 − 520 = 160 ms. É uma diferença entre médias nessas condições, não um preço fixo para toda mensagem que você responde.' },
+      { t: 'match', q: 'Qual rede atencional está em destaque?', p: [['Ficar preparado após um aviso', 'Alerta'], ['Direcionar a busca para a coluna indicada', 'Orientação'], ['Manter a regra de nomear a tinta', 'Controle executivo']],
+        e: 'Alerta, orientação e controle executivo são do modelo de redes atencionais. Não são sinônimos dos quatro tipos funcionais.' },
+    ] },
+  ] },
+  { id: 'me', name: 'Memória', pdf: 'pdfs/processos-basicos/memoria.pdf', lessons: [
+    { id: 'me1', name: 'Codificar, armazenar, recuperar', qs: [
+      { t: 'match', q: 'Rafael se apresenta e, dias depois, o mascote tenta lembrar o nome dele. Ligue cada processo.', p: [['Codificação', 'Processar o nome na apresentação'], ['Armazenamento', 'Reter ao longo dos dias'], ['Recuperação', 'Acessar o nome no reencontro']],
+        e: 'Não lembrar pode vir de aprendizagem insuficiente, competição ou acesso difícil. O resultado não entrega o mecanismo.' },
+      { t: 'match', q: 'Qual sistema ou demanda predomina?', p: [['Lembrar o dia da primeira aula', 'Episódica'], ['Saber o que é hipocampo', 'Semântica'], ['Tocar uma sequência treinada', 'Procedural'], ['Segurar dois valores no cálculo do troco', 'Memória de trabalho']],
+        e: 'As tarefas podem combinar sistemas; a classificação aponta o aspecto em destaque.' },
+      { t: 'mc', q: 'Quem acrescentou o buffer episódico ao modelo de memória de trabalho, em 2000?', o: ['Baddeley', 'Ebbinghaus', 'Tulving', 'Atkinson e Shiffrin'], a: 0,
+        e: 'Baddeley. O buffer integra informações de fontes diferentes de forma temporária. Não é o álbum de todos os episódios da sua vida.' },
+      { t: 'gap', q: 'Escolher o nome certo numa lista é ___. Produzir o nome sem alternativas é evocação.', o: ['reconhecimento', 'consolidação', 'interferência'], a: 0,
+        e: 'Acertar a alternativa não prova que você consegue explicar, justificar ou aplicar o conceito sem apoio.' },
+    ] },
+    { id: 'me2', name: 'Esquecer, interferir, revisar', qs: [
+      { t: 'mc', q: 'A senha antiga atrapalha você a usar a nova. Que interferência é essa?', o: ['Proativa', 'Retroativa', 'Prospectiva', 'Episódica'], a: 0,
+        e: 'Proativa: o antigo interfere no novo. Retroativa: o novo atrapalha lembrar o antigo. Sempre diga quem interfere em quê.' },
+      { t: 'mc', q: 'Dados hipotéticos: 30 repetições na primeira aprendizagem e 18 na reaprendizagem. Qual a economia?', o: ['40%', '60%', '12%', '18%'], a: 0,
+        e: '(30 − 18) / 30 × 100 = 40%. A economia é sobre repetições até o critério, não sobre a porcentagem de itens lembrados.' },
+      { t: 'mc', q: 'Você lembra qual livro prometeu devolver, mas esquece de entregar quando encontra o colega. Que memória falhou?', o: ['Prospectiva', 'Semântica', 'Procedural', 'Sensorial'], a: 0,
+        e: 'Memória prospectiva é lembrar de realizar uma intenção na hora certa. Um aviso junto ao livro ajuda.' },
+      { t: 'tf', q: '“Uma noite de sono ensina a matéria que eu não estudei.”', a: false,
+        e: 'O sono pode participar da consolidação, mas não instala conteúdo que não foi aprendido.' },
+    ] },
+  ] },
+  { id: 'lp', name: 'Linguagem e pensamento', pdf: 'pdfs/processos-basicos/linguagem-e-pensamento.pdf', lessons: [
+    { id: 'lp1', name: 'As peças da linguagem', qs: [
+      { t: 'match', q: 'Ligue cada nível de análise ao exemplo.', p: [['Fonologia', '“pato” e “bato”'], ['Morfologia', 'O plural em “gatos”'], ['Semântica', 'Sentidos de “banco”'], ['Pragmática', '“Pode fechar a janela?” como pedido']],
+        e: 'O critério é o nível analisado: contraste sonoro, estrutura com função gramatical, significado e uso no contexto.' },
+      { t: 'mc', q: 'Uma pessoa organiza mentalmente as peças de uma mala sem formular frases. Isso ilustra:', o: ['Possibilidade de pensamento não verbal', 'Ausência de pensamento', 'Que a língua nunca influencia o pensamento', 'Perda de linguagem'], a: 0,
+        e: 'Imaginar relações espaciais ilustra pensamento não verbal. Dizer que a língua nunca influencia extrapola o exemplo.' },
+      { t: 'tf', q: '“Uma língua de sinais tem organização gramatical.”', a: true,
+        e: 'Línguas de sinais são línguas, com gramática própria.' },
+      { t: 'tf', q: '“Repetir mais alto garante uma referência mais clara.”', a: false,
+        e: 'Falar mais alto ajuda se o problema for ouvir, mas não resolve a ambiguidade de “aquele negocinho”.' },
+    ] },
+    { id: 'lp2', name: 'O problema do “negocinho”', qs: [
+      { t: 'mc', q: 'O mascote pede “aquele negocinho” e Rafael traz uma colher. O que faltou na frase?', o: ['Uma referência clara ao objeto', 'Gramática correta', 'Volume de voz', 'Palavras difíceis'], a: 0,
+        e: '“O abridor ao lado da garrafa na cozinha” dá pistas. Rafael também pode mostrar e perguntar “este?”. Gramática certa não garante comunicação.' },
+      { t: 'match', q: '“Água!” em duas situações. Qual a função na análise de Skinner?', p: [['Dito ao ver uma garrafa, numa atividade de nomear', 'Tato'], ['Dito por alguém com sede, para receber água', 'Mando']],
+        e: 'A forma “água” não basta para classificar: é preciso olhar antecedentes, consequências e história.' },
+      { t: 'match', q: 'Qual a ênfase de cada autor?', p: [['Chomsky', 'Estrutura que torna a linguagem possível'], ['Tomasello', 'Intenções compartilhadas e uso'], ['Vygotsky', 'Fala que organiza a própria ação']],
+        e: 'Chomsky e Tomasello fazem perguntas diferentes. Não é “só biologia” contra “só ambiente”.' },
+      { t: 'tf', q: 'Pelo estudo de Winawer e colegas, “quem fala inglês não consegue enxergar os azuis que os russos enxergam”.', a: false,
+        e: 'O estudo mediu velocidade numa tarefa específica. Não mostrou cegueira para tons em falantes de inglês.' },
+    ] },
+  ] },
+  { id: 'em', name: 'Emoção e motivação', pdf: 'pdfs/processos-basicos/emocao-e-motivacao.pdf', lessons: [
+    { id: 'em1', name: 'O que acontece numa emoção', qs: [
+      { t: 'mc', q: 'O mascote se sente empolgado, mas não começa a estudar. A melhor conclusão é:', o: ['Sentir entusiasmo não garante iniciar a ação', 'Emoção e ação são a mesma coisa', 'Empolgação garante motivação sustentada', 'Ele não tem nenhuma meta'], a: 0,
+        e: 'A empolgação é real, mas agir depende de outras condições além da emoção do momento.' },
+      { t: 'match', q: 'Na apresentação, Ana sente medo. Ligue cada parte da emoção.', p: [['Vê a situação como ameaça', 'Avaliação'], ['Sente medo', 'Experiência subjetiva'], ['Coração acelerado', 'Mudança fisiológica'], ['Vontade de sair', 'Tendência de ação']],
+        e: 'Ela pode ter vontade de sair e decidir ficar. Tendência de ação não é o mesmo que comportamento.' },
+      { t: 'match', q: 'O que cada teoria clássica destaca?', p: [['James-Lange', 'Experiência das mudanças corporais'], ['Cannon-Bard', 'Experiência e corpo em paralelo'], ['Schachter-Singer', 'Ativação + interpretação do contexto']],
+        e: 'São esquemas introdutórios de teorias históricas, não uma ordem comprovada para toda emoção.' },
+      { t: 'tf', q: '“Uma emoção desagradável é sempre prejudicial.”', a: false,
+        e: 'Desagradável descreve a valência, não a utilidade.' },
+    ] },
+    { id: 'em2', name: '“Amanhã eu começo!”', qs: [
+      { t: 'mc', q: 'Rafael estuda um tema chato porque é necessário para a carreira. Que motivação é essa?', o: ['Extrínseca (regulação identificada)', 'Intrínseca', 'Amotivação', 'Homeostase'], a: 0,
+        e: 'Intrínseca seria fazer pelo interesse na própria atividade. Estudar por um resultado separável é extrínseca, mesmo que ele valorize esse resultado.' },
+      { t: 'mc', q: '“Essa prova é importante, mas não acredito que eu consiga.” A segunda parte da frase fala de:', o: ['Autoeficácia', 'Autoestima', 'Valor da meta', 'Homeostase'], a: 0,
+        e: '“Importante” é valor; “não consigo” é crença de capacidade (autoeficácia). Resolver uma questão e conferir dá informação concreta.' },
+      { t: 'mc', q: 'Qual caso é procrastinação?', o: ['Adiar uma tarefa possível, prevendo prejuízo, para fugir do desconforto de começar', 'Adiar o trabalho para esperar dados indispensáveis', 'Fazer a tarefa no prazo combinado', 'Pedir ajuda ao grupo de estudo'], a: 0,
+        e: 'Procrastinar é adiar uma ação pretendida apesar do prejuízo esperado. Esperar dados pode ser uma decisão adequada.' },
+      { t: 'mc', q: 'João fecha o livro, sente alívio e passa a fechar o livro mais vezes diante de questões difíceis. Isso é:', o: ['Reforçamento negativo', 'Punição', 'Reforçamento positivo', 'Extinção'], a: 0,
+        e: 'Remover o desconforto torna o comportamento mais provável. “Negativo” indica remoção, não julgamento moral. Punição reduz o comportamento.' },
+    ] },
+  ] },
+];
+const ALL_LESSONS = UNITS.flatMap((u, ui) => u.lessons.map((l, li) => ({ ...l, unit: u, ui, li })));
+ALL_LESSONS.forEach(l => l.qs.forEach((q, i) => { q.id = l.id + '-' + i; q.unit = l.unit.id; q.src = l.unit.name; }));
+const QBYID = Object.fromEntries(ALL_LESSONS.flatMap(l => l.qs.map(q => [q.id, q])));
+
+/* ---------------- progresso (fica só neste aparelho) ---------------- */
+const KEY = 'psicoplay-v1';
+const blank = () => ({ xp: 0, done: {}, streak: 0, last: null, daily: {}, mistakes: [], stats: {}, sound: true });
+let S = blank();
+try { const raw = localStorage.getItem(KEY); if (raw) S = Object.assign(blank(), JSON.parse(raw)); } catch (e) {}
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} };
+const dayKey = (d = new Date()) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+function yesterdayKey() { const d = new Date(); d.setDate(d.getDate() - 1); return dayKey(d); }
+function liveStreak() { return (S.last === dayKey() || S.last === yesterdayKey()) ? S.streak : 0; }
+const GOAL = 20, PER_LEVEL = 60;
+const level = xp => Math.min(10, Math.floor(xp / PER_LEVEL) + 1);
+const levelName = n => n >= 10 ? 'Formatura!' : `${n}º período`;
+
+/* ---------------- som ---------------- */
+let actx = null;
+function tone(f, d, w = 0, type = 'triangle', v = .06) {
+  if (!S.sound) return;
+  try {
+    actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+    const t = actx.currentTime + w, o = actx.createOscillator(), g = actx.createGain();
+    o.type = type; o.frequency.value = f; g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(v, t + .01); g.gain.exponentialRampToValueAtTime(.0001, t + d);
+    o.connect(g).connect(actx.destination); o.start(t); o.stop(t + d + .02);
+  } catch (e) {}
+}
+const sfx = { tap: () => tone(700, .05), ok: () => { tone(660, .1); tone(880, .16, .09); }, no: () => { tone(300, .14, 0, 'sine'); tone(230, .2, .1, 'sine'); }, win: () => [523, 659, 784, 1047].forEach((f, i) => tone(f, .2, i * .1)) };
+
+/* ---------------- telas ---------------- */
+const screens = ['home', 'profile', 'lesson', 'end'];
+function show(id) { screens.forEach(s => $('#' + s).hidden = s !== id); $('#toast').hidden = true; }
+document.querySelectorAll('[data-go]').forEach(b => b.addEventListener('click', () => { if (b.dataset.go === 'home') renderHome(); else renderProfile(); show(b.dataset.go); }));
+let toastT;
+function toast(msg) { const t = $('#toast'); t.textContent = msg; t.hidden = false; clearTimeout(toastT); toastT = setTimeout(() => t.hidden = true, 2200); }
+
+const ICON = {
+  check: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7" fill="none" stroke="#1C1C1C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  star: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.8 6 6.4.6-4.8 4.3 1.4 6.4L12 16.5l-5.8 3.3 1.4-6.4L2.8 9.1l6.4-.6z" fill="#FBFAF7" stroke="#1C1C1C" stroke-width="2" stroke-linejoin="round"/></svg>',
+  lock: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2.5" fill="none" stroke="#1C1C1C" stroke-width="2.2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" fill="none" stroke="#1C1C1C" stroke-width="2.2"/></svg>',
+  book: '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 5.5C6.5 4.5 9.5 4.5 12 6c2.5-1.5 5.5-1.5 8-.5V19c-2.5-1-5.5-1-8 .5-2.5-1.5-5.5-1.5-8-.5z" fill="#FFE14D" stroke="#1C1C1C" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 6v13.5" stroke="#1C1C1C" stroke-width="1.8"/></svg>',
+  trophy: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10v4a5 5 0 0 1-10 0z" fill="#FBFAF7" stroke="#1C1C1C" stroke-width="2" stroke-linejoin="round"/><path d="M7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4M12 13v4M8 20h8M9.5 17h5" fill="none" stroke="#1C1C1C" stroke-width="2" stroke-linecap="round"/></svg>',
+  heart: '<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-7.5-4.6-9-9.3C2 7.4 4.3 4.5 7.4 4.5c2 0 3.6 1.2 4.6 2.8 1-1.6 2.6-2.8 4.6-2.8 3.1 0 5.4 2.9 4.4 6.2-1.5 4.7-9 9.3-9 9.3z" fill="#E0261B" stroke="#1C1C1C" stroke-width="1.8" stroke-linejoin="round"/></svg>',
+};
+const ZIG = [0, 46, 64, 30, -20, -56, -40, 10];
+
+function unlockedIndex() { const i = ALL_LESSONS.findIndex(l => !S.done[l.id]); return i === -1 ? ALL_LESSONS.length : i; }
+
+/* ---------------- trilha ---------------- */
+function renderHome() {
+  const st = liveStreak();
+  $('#stStreak span').textContent = st; $('#stStreak').classList.toggle('off', st === 0);
+  $('#stXp span').textContent = S.xp;
+  const today = S.daily[dayKey()] || 0;
+  $('#goalTxt').textContent = `${Math.min(today, GOAL)} / ${GOAL} XP`;
+  const gb = $('#goalBar'); gb.style.width = Math.min(100, today / GOAL * 100) + '%'; gb.classList.toggle('full', today >= GOAL);
+  const n = Object.keys(S.done).length;
+  $('#helloTitle').textContent = n === 0 ? 'Bora estudar pra prova?' : today >= GOAL ? 'Meta do dia batida!' : 'Bora continuar?';
+  $('#helloSub').textContent = n === 0 ? 'Comece pela primeira lição. Uma por dia já mantém a sequência.' : today >= GOAL ? 'Se quiser, revise os erros ou refaça uma lição.' : `Faltam ${GOAL - today} XP para a meta de hoje.`;
+  const mb = $('#mistakesBtn'); mb.hidden = S.mistakes.length === 0; mb.querySelector('span').textContent = `Revisar erros (${S.mistakes.length})`;
+
+  const cur = unlockedIndex();
+  let html = '', k = 0;
+  UNITS.forEach((u, ui) => {
+    html += `<section class="unit"><div class="unit-head"><div><div class="eyebrow">Unidade ${ui + 1}</div><h2><span>${u.name}</span></h2></div>` +
+      `<a class="pdf" href="${SITE + u.pdf}" target="_blank" rel="noopener" aria-label="Baixar resumo em PDF de ${u.name}">${ICON.book}Resumo</a></div><div class="path">`;
+    u.lessons.forEach(l => {
+      const idx = ALL_LESSONS.findIndex(x => x.id === l.id);
+      const state = S.done[l.id] ? 'done' : idx === cur ? 'current' : 'locked';
+      const off = ZIG[k++ % ZIG.length];
+      html += `<div class="node-wrap" style="transform:translateX(${off}px)">` +
+        (state === 'current' ? '<span class="start-tag">COMEÇAR</span>' : '') +
+        `<button class="node ${state}" data-lesson="${l.id}" ${state === 'locked' ? 'aria-disabled="true"' : ''} aria-label="${l.name}${state === 'done' ? ', concluída' : state === 'locked' ? ', bloqueada' : ''}">${state === 'done' ? ICON.check : state === 'locked' ? ICON.lock : ICON.star}</button>` +
+        `<span class="node-label">${l.name}</span></div>`;
+    });
+    html += '</div></section>';
+  });
+  const allDone = cur >= ALL_LESSONS.length;
+  html += `<div class="final"><button class="node ${allDone ? 'current' : 'locked'}" id="finalNode" aria-label="Simulado da matéria${allDone ? '' : ', bloqueado'}">${allDone ? ICON.trophy : ICON.lock}</button><span class="node-label">Simulado da matéria<br>10 questões sorteadas</span></div>`;
+  $('#trail').innerHTML = html;
+  $('#trail').querySelectorAll('[data-lesson]').forEach(b => b.addEventListener('click', () => {
+    if (b.classList.contains('locked')) { toast('Termine a lição anterior primeiro'); return; }
+    startLesson(ALL_LESSONS.find(l => l.id === b.dataset.lesson));
+  }));
+  $('#finalNode').addEventListener('click', () => {
+    if (!allDone) { toast('Libera quando terminar todas as lições'); return; }
+    const pool = shuffle(Object.values(QBYID)).slice(0, 10);
+    startLesson({ id: 'simulado', name: 'Simulado da matéria', qs: pool, kind: 'exam' });
+  });
+}
+$('#mistakesBtn').addEventListener('click', () => {
+  const qs = S.mistakes.map(id => QBYID[id]).filter(Boolean).slice(0, 8);
+  if (qs.length) startLesson({ id: 'erros', name: 'Revisão de erros', qs, kind: 'mistakes' });
+});
+
+/* ---------------- perfil ---------------- */
+function renderProfile() {
+  const lv = level(S.xp), into = S.xp % PER_LEVEL;
+  $('#pfLevel').textContent = levelName(lv);
+  $('#pfNext').textContent = lv >= 10 ? 'Você chegou ao topo. Continue revisando!' : `Faltam ${PER_LEVEL - into} XP para o ${lv + 1}º período`;
+  $('#pfBar').style.width = (lv >= 10 ? 100 : into / PER_LEVEL * 100) + '%';
+  $('#pfXp').textContent = S.xp; $('#pfStreak').textContent = liveStreak();
+  $('#pfLessons').textContent = `${Object.keys(S.done).length}/${ALL_LESSONS.length}`;
+  let r = 0, t = 0; Object.values(S.stats).forEach(s => { r += s.r; t += s.t; });
+  $('#pfAcc').textContent = t ? Math.round(r / t * 100) + '%' : '–';
+  $('#pfUnits').innerHTML = UNITS.map(u => {
+    const s = S.stats[u.id]; const pc = s && s.t ? Math.round(s.r / s.t * 100) : null;
+    return `<div class="unit-stat"><span class="nm">${u.name}</span><span class="pc">${pc === null ? 'ainda não estudada' : pc + '%'}</span><div class="bar"><i style="width:${pc || 0}%"></i></div></div>`;
+  }).join('');
+  $('#soundTxt').textContent = S.sound ? 'Ligados' : 'Desligados';
+  $('#soundBtn').setAttribute('aria-pressed', S.sound);
+}
+$('#soundBtn').addEventListener('click', () => { S.sound = !S.sound; save(); renderProfile(); sfx.tap(); });
+$('#resetBtn').addEventListener('click', () => { $('#resetConfirm').hidden = false; });
+$('#resetNo').addEventListener('click', () => { $('#resetConfirm').hidden = true; });
+$('#resetYes').addEventListener('click', () => { const snd = S.sound; S = blank(); S.sound = snd; save(); $('#resetConfirm').hidden = true; renderProfile(); toast('Progresso apagado'); });
+
+/* ---------------- lição ---------------- */
+const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+let L = null;
+const KIND = { mc: 'Escolha a resposta certa', tf: 'Verdadeiro ou falso?', gap: 'Complete a frase', match: 'Ligue os pares' };
+
+function startLesson(lesson) {
+  L = { lesson, queue: lesson.qs.map(q => ({ q, retry: false })), total: lesson.qs.length, doneCount: 0, hearts: 3, firstTry: 0, answered: new Set(), wrongIds: new Set(), sel: null, checked: false };
+  sfx.tap(); show('lesson'); nextQ();
+}
+function paintLessonTop() {
+  $('#lsBar').style.width = (L.doneCount / L.total * 100) + '%';
+  $('#lsHeartsN').textContent = L.hearts;
+}
+function nextQ() {
+  paintLessonTop();
+  if (!L.queue.length) return finishLesson();
+  L.cur = L.queue[0]; L.sel = null; L.checked = false; L.matchMiss = 0;
+  const q = L.cur.q, area = $('#qArea');
+  $('#sheet').hidden = true; $('#lsFoot').hidden = false;
+  const btn = $('#checkBtn'); btn.disabled = true; btn.textContent = 'VERIFICAR';
+  let h = `<div class="q-kind">${KIND[q.t]}${L.cur.retry ? '<span class="retry">DE NOVO</span>' : ''}</div>`;
+  if (q.t === 'gap') {
+    h += `<p class="q-text">${q.q.replace('___', '<span class="blank" id="blank">&nbsp;</span>')}</p>`;
+    L.order = shuffle(q.o.map((_, i) => i));
+    h += `<div class="chips">${L.order.map(i => `<button class="opt" data-i="${i}" aria-pressed="false">${q.o[i]}</button>`).join('')}</div>`;
+  } else if (q.t === 'tf') {
+    h += `<p class="q-text">${q.q}</p><div class="tf"><button class="opt" data-i="1" aria-pressed="false">Verdadeiro</button><button class="opt" data-i="0" aria-pressed="false">Falso</button></div>`;
+  } else if (q.t === 'mc') {
+    L.order = shuffle(q.o.map((_, i) => i));
+    h += `<p class="q-text">${q.q}</p><div class="opts">${L.order.map((i, n) => `<button class="opt" data-i="${i}" aria-pressed="false"><span class="k">${'ABCD'[n]}</span><span>${q.o[i]}</span></button>`).join('')}</div>`;
+  } else if (q.t === 'match') {
+    const lefts = shuffle(q.p.map((_, i) => i)), rights = shuffle(q.p.map((_, i) => i));
+    h += `<p class="q-text">${q.q}</p><div class="match"><div class="col">${lefts.map(i => `<button class="tilebtn l" data-side="l" data-i="${i}" aria-pressed="false">${q.p[i][0]}</button>`).join('')}</div><div class="col">${rights.map(i => `<button class="tilebtn r" data-side="r" data-i="${i}" aria-pressed="false">${q.p[i][1]}</button>`).join('')}</div></div>`;
+    L.pick = { l: null, r: null }; L.pairsLeft = q.p.length;
+  }
+  area.innerHTML = h; area.scrollTop = 0;
+  if (q.t === 'match') { btn.textContent = 'LIGUE TODOS OS PARES'; area.querySelectorAll('.tilebtn').forEach(b => b.addEventListener('click', () => tapTile(b))); }
+  else area.querySelectorAll('.opt').forEach(b => b.addEventListener('click', () => pick(b)));
+}
+function pick(b) {
+  if (L.checked) return;
+  sfx.tap();
+  $('#qArea').querySelectorAll('.opt').forEach(o => o.setAttribute('aria-pressed', o === b));
+  L.sel = +b.dataset.i;
+  if (L.cur.q.t === 'gap') { const bl = $('#blank'); bl.textContent = L.cur.q.o[L.sel]; bl.classList.add('filled'); }
+  $('#checkBtn').disabled = false;
+}
+function tapTile(b) {
+  if (L.checked || b.classList.contains('paired')) return;
+  sfx.tap();
+  const side = b.dataset.side, other = side === 'l' ? 'r' : 'l';
+  $('#qArea').querySelectorAll(`.tilebtn.${side}`).forEach(t => { if (!t.classList.contains('paired')) t.setAttribute('aria-pressed', t === b); });
+  L.pick[side] = b;
+  if (L.pick[other]) {
+    const l = L.pick.l, r = L.pick.r;
+    if (l.dataset.i === r.dataset.i) {
+      [l, r].forEach(t => { t.classList.add('paired'); t.setAttribute('aria-pressed', 'false'); t.disabled = true; });
+      tone(780, .08);
+      if (--L.pairsLeft === 0) setTimeout(() => check(), reduce ? 0 : 250);
+    } else {
+      L.matchMiss++; tone(260, .12, 0, 'sine');
+      [l, r].forEach(t => { t.classList.add('miss'); t.setAttribute('aria-pressed', 'false'); setTimeout(() => t.classList.remove('miss'), 420); });
+    }
+    L.pick = { l: null, r: null };
+  }
+}
+function correctText(q) {
+  if (q.t === 'tf') return 'Resposta: ' + (q.a ? 'Verdadeiro' : 'Falso');
+  if (q.t === 'match') return q.p.map(p => `${p[0]} → ${p[1]}`).join(' · ');
+  return 'Resposta certa: ' + q.o[q.a];
+}
+function check() {
+  if (L.checked) return;
+  const q = L.cur.q;
+  let ok;
+  if (q.t === 'match') ok = L.matchMiss === 0;
+  else if (L.sel === null) return;
+  else ok = q.t === 'tf' ? (L.sel === 1) === q.a : L.sel === q.a;
+  L.checked = true;
+  if (q.t !== 'match') {
+    $('#qArea').querySelectorAll('.opt').forEach(o => {
+      o.disabled = true; const i = +o.dataset.i;
+      const isRight = q.t === 'tf' ? (i === 1) === q.a : i === q.a;
+      if (isRight) o.classList.add('right'); else if (i === L.sel) o.classList.add('wrong');
+    });
+  }
+  const firstAttempt = !L.answered.has(q.id); L.answered.add(q.id);
+  const st = S.stats[q.unit] || (S.stats[q.unit] = { r: 0, t: 0 });
+  if (firstAttempt) { st.t++; if (ok) st.r++; }
+  const sheet = $('#sheet');
+  sheet.classList.toggle('ok', ok); sheet.classList.toggle('no', !ok);
+  if (ok) {
+    sfx.ok();
+    if (firstAttempt) { L.firstTry++; S.mistakes = S.mistakes.filter(id => id !== q.id); }
+    $('#shTitle').innerHTML = ICON.check.replace('<svg', '<svg width="28" height="28"') + ['Mandou bem!', 'Isso aí!', 'Salva pra prova!', 'Certinho!'][Math.floor(Math.random() * 4)];
+    $('#shAns').textContent = '';
+    L.queue.shift(); L.doneCount++;
+  } else {
+    sfx.no();
+    L.hearts--; const hh = $('#lsHearts'); hh.classList.remove('hit'); void hh.offsetWidth; hh.classList.add('hit');
+    if (!S.mistakes.includes(q.id)) S.mistakes.push(q.id);
+    L.wrongIds.add(q.id);
+    $('#shTitle').textContent = q.t === 'match' ? `Completou, mas trocou ${L.matchMiss === 1 ? 'um par' : 'alguns pares'}` : 'Quase!';
+    $('#shAns').textContent = q.t === 'match' ? '' : correctText(q);
+    const item = L.queue.shift();
+    if (q.t === 'match') L.doneCount++;
+    else L.queue.push({ q, retry: true });
+  }
+  $('#shExp').textContent = q.e;
+  $('#shSrc').textContent = 'Gabarito comentado · apostila ' + q.src;
+  save(); paintLessonTop();
+  $('#lsFoot').hidden = true; sheet.hidden = false;
+  $('#contBtn').focus({ preventScroll: true });
+}
+$('#checkBtn').addEventListener('click', check);
+$('#contBtn').addEventListener('click', () => { if (L.hearts <= 0) return outOfHearts(); nextQ(); });
+$('#quitBtn').addEventListener('click', () => { L = null; renderHome(); show('home'); });
+
+function addXp(n) {
+  S.xp += n; const k = dayKey(); S.daily[k] = (S.daily[k] || 0) + n;
+  if (S.last !== k) { S.streak = S.last === yesterdayKey() ? S.streak + 1 : 1; S.last = k; }
+  const keys = Object.keys(S.daily).sort(); while (keys.length > 30) delete S.daily[keys.shift()];
+}
+function finishLesson() {
+  const lsn = L.lesson, perfect = L.firstTry === L.total;
+  const beforeLv = level(S.xp);
+  const xp = lsn.kind === 'exam' ? 20 : lsn.kind === 'mistakes' ? 8 : 10;
+  const bonus = perfect ? 5 : 0;
+  const prevStreak = liveStreak();
+  addXp(xp + bonus);
+  if (!lsn.kind) S.done[lsn.id] = true;
+  save(); sfx.win();
+  const acc = Math.round(L.firstTry / L.total * 100);
+  $('#endTitle').innerHTML = `<span>${lsn.kind === 'exam' ? 'Simulado feito!' : lsn.kind === 'mistakes' ? 'Erros revisados!' : perfect ? 'Lição perfeita!' : 'Lição concluída!'}</span>`;
+  const lvUp = level(S.xp) > beforeLv;
+  $('#endSub').textContent = lvUp ? `Você subiu para o ${levelName(level(S.xp))}!` :
+    perfect ? 'Acertou tudo de primeira. +5 XP de bônus.' :
+    L.wrongIds.size ? 'O que você errou foi para “Revisar erros”. Revisar é o que fixa.' : 'Bom trabalho. A próxima lição já está liberada.';
+  $('#endXp').textContent = '+' + (xp + bonus);
+  $('#endAcc').textContent = acc + '%';
+  $('#endStreak').innerHTML = liveStreak() + (liveStreak() > prevStreak ? ' ↑' : '');
+  $('#endImg').src = perfect ? IMG_APRESENTANDO : IMG_ESTUDANDO;
+  const pdf = $('#endPdf');
+  if (lsn.unit && !perfect) { pdf.hidden = false; pdf.href = SITE + lsn.unit.pdf; pdf.textContent = 'Ler o resumo de ' + lsn.unit.name; } else pdf.hidden = true;
+  $('#endBtn').textContent = 'CONTINUAR';
+  $('#endRes').hidden = false;
+  L = null; show('end');
+}
+function outOfHearts() {
+  const lsn = L.lesson; save();
+  $('#endTitle').innerHTML = '<span>Acabaram as vidas</span>';
+  $('#endSub').textContent = 'Sem problema: as questões que você errou foram para a revisão. Dá uma lida no resumo e tenta de novo.';
+  $('#endRes').hidden = true;
+  $('#endImg').src = IMG_ESTUDANDO;
+  const pdf = $('#endPdf');
+  if (lsn.unit) { pdf.hidden = false; pdf.href = SITE + lsn.unit.pdf; pdf.textContent = 'Ler o resumo de ' + lsn.unit.name; } else pdf.hidden = true;
+  $('#endBtn').textContent = 'TENTAR DE NOVO';
+  L = { retryLesson: lsn };
+  show('end');
+}
+$('#endBtn').addEventListener('click', () => {
+  if (L && L.retryLesson) { const l = L.retryLesson; L = null; startLesson(l); return; }
+  renderHome(); show('home');
+});
+
+const IMG_APRESENTANDO = 'img/mascote/apresentando.png', IMG_ESTUDANDO = 'img/mascote/estudando.png';
+renderHome(); show('home');
+window.__pp = { get S() { return S; }, get L() { return L; }, UNITS, ALL_LESSONS };
+})();
+</script>
+
+</body></html>

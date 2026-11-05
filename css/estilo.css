@@ -815,3 +815,20 @@ ul { list-style: none; margin: 0; padding: 0; }
     transition: none !important;
   }
 }
+
+/* Chamada para o PsicoPlay na página da matéria */
+.chamada-jogo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px 20px;
+  margin-top: 32px;
+  padding: 20px 22px;
+  background: var(--papel-claro);
+  border: 2.5px solid var(--tinta);
+  border-radius: var(--rabisco);
+  box-shadow: 4px 5px 0 var(--tinta);
+}
+.chamada-jogo h2 { font-size: 1.5rem; }
+.chamada-jogo p { margin: 4px 0 0; color: var(--grafite); }
